@@ -158,8 +158,17 @@ input:focus{border-bottom-color:#f1f1ef}
 input::placeholder{color:#b0b0ad;letter-spacing:normal;opacity:1}
 .pin-input{font-variant-numeric:tabular-nums;letter-spacing:.12em;-webkit-text-security:none}
 #send-button{margin-top:24px}
+.history{margin-top:40px;border-top:1px solid #696969}
+.history-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0 8px}
+.history-heading h2{margin:0;font-size:17px;font-weight:550;letter-spacing:-.02em}
+.history-heading span{color:#aaa;font-size:11px}
+.history ul{list-style:none;margin:0;padding:0}
+.history-item{padding:14px 0;border-bottom:1px solid #383838}
+.history-name{display:block;font-size:14px;line-height:1.4;overflow-wrap:anywhere;font-weight:450}
+.history-meta{display:block;margin-top:4px;font-size:11px;color:#aaa}
 .note{font-size:11px;line-height:1.4;color:#b0b0ad;white-space:nowrap}
 .view-heading .note{padding-bottom:3px}
+.space-row{display:flex;justify-content:space-between;gap:12px;padding:15px 0;color:#b0b0ad;font-size:11px;border-bottom:1px solid #383838;font-variant-numeric:tabular-nums}
 #expiration-text{margin-top:14px}
 .error{font-size:13px;line-height:1.5;color:#e7bdbd;overflow-wrap:anywhere;margin-top:12px}
 .error:empty{display:none}

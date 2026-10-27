@@ -5,26 +5,73 @@
  <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://pjaszmbselyhtvuhaegx.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
  <meta name="viewport" content="width=device-width,initial-scale=1">
  <meta name="referrer" content="no-referrer">
- <meta name="theme-color" content="#f6f8f3">
- <meta name="description" content="Envía un archivo con un enlace. Disponible durante 24 horas.">
- <title>Enlace — Un archivo. Un enlace.</title>
- <link rel="icon" href="./favicon.svg" type="image/svg+xml">
- <link rel="stylesheet" href="./style.css">
- <script src="./app.js?v=1b20131c7e84d22e" defer></script>
+ <meta name="theme-color" content="#000000">
+ <meta name="description" content="Comparte un archivo con un enlace temporal.">
+ <title>Enlace</title>
+ <link rel="icon" href="./favicon.svg?v=c2094cdf1acc9636" type="image/svg+xml">
+ <link rel="stylesheet" href="./style.css?v=21eec69969051ddf">
+ <script src="./app.js?v=951c6e8138a3541d" defer></script>
 </head>
 <body>
- <header><a class="brand" href="./" aria-label="Enlace, inicio"><span class="brand-symbol"><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span>enlace<span>.</span></a><span class="header-tag"><span class="dot"></span>Solo por 24 horas</span></header>
  <main>
-  <section id="send-view" class="workspace">
-   <div class="intro"><span class="eyebrow">COMPARTE SIN COMPLICARTE</span><h1>Un archivo.<br>Un enlace.<br><span>Y listo.</span></h1><p>Sube lo que quieras compartir.<br>Copia el enlace. Envíaselo a quien quieras.</p><div class="intro-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6zM8 12l3 3 5-6"/></svg><span>Tu archivo se cifra antes de salir del navegador.</span></div><div class="intro-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Disponible 24 horas. Después, se elimina.</span></div></div>
-   <div class="transfer-card"><div class="card-top"><span>UN NUEVO ENVÍO</span><span class="small-tag">Sin cuentas</span></div><div id="drop-zone" class="drop-zone"><div class="upload-art" aria-hidden="true"><div class="art-sheet"><svg viewBox="0 0 24 24"><path d="M12 17V5M7 10l5-5 5 5"/></svg><span></span><span></span></div><span class="art-spark">+</span></div><h2>Suelta aquí tu archivo</h2><p>o elígelo desde tu dispositivo</p><button id="choose-file" class="button primary" type="button">Elegir archivo<span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></button><span class="limit">Hasta 50 MB por archivo</span></div><div id="selected-file" class="selected-file" hidden><span class="file-icon"><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span><div><strong id="selected-name"></strong><span id="selected-size"></span></div><button id="clear-file" class="icon-button" aria-label="Quitar archivo">×</button></div><details id="options"><summary>Añadir un PIN <span>Opcional</span></summary><label for="pin">PIN de 6 a 12 números</label><input id="pin" type="password" inputmode="numeric" autocomplete="new-password" maxlength="12" placeholder="Déjalo vacío para compartir solo con el enlace"><p>Si lo usas, envíalo por separado.</p></details><p id="send-error" class="error" role="alert"></p><button id="send-button" class="button primary full" disabled>Crear enlace<span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></button><div class="card-bottom"><span class="lock-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>El enlace es privado. Tú eliges con quién compartirlo.</div></div>
+  <section id="send-view" class="view" aria-labelledby="send-title">
+   <h1 id="send-title">Enviar</h1>
+   <div id="drop-zone" class="drop-zone">
+    <button id="choose-file" class="button secondary" type="button">Elegir archivo</button>
+   </div>
+   <div id="selected-file" class="file-row" hidden>
+    <div class="file-details"><strong id="selected-name"></strong><span id="selected-size"></span></div>
+    <button id="clear-file" class="icon-button" type="button" aria-label="Quitar archivo">×</button>
+   </div>
+   <div id="options">
+    <label class="sr-only" for="pin">PIN opcional, de 6 a 12 números</label>
+    <input id="pin" class="pin-input" name="transfer-code" type="text" inputmode="numeric" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="12" placeholder="PIN (opcional)" data-1p-ignore data-lpignore="true" data-bwignore>
+   </div>
+   <p id="send-error" class="error" role="alert"></p>
+   <button id="send-button" class="button primary" type="button" disabled>Crear enlace</button>
+   <p class="note">50 MB · 24 h</p>
   </section>
-  <section id="progress-view" class="center-view" hidden><div class="status-card"><div class="status-icon"><span class="spinner"></span></div><span class="eyebrow">TU ARCHIVO, DE CAMINO</span><h1 id="progress-title">Preparando archivo…</h1><p id="progress-description">Un momento. Estamos protegiendo tu envío.</p><div class="progress-track"><span id="progress-bar"></span></div><div class="progress-info"><span id="progress-percent"></span><span id="progress-size"></span></div><p class="fine-print">Espera a que aparezca el enlace antes de cerrar esta página.</p></div></section>
-  <section id="result-view" class="center-view" hidden><div class="status-card"><div class="status-icon success"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></div><span class="eyebrow">YA ESTÁ LISTO</span><h1>Un enlace,<br><span>y a compartir.</span></h1><div class="result-file"><strong id="result-name"></strong><span id="result-size"></span></div><label for="share-link">Tu enlace</label><div class="link-box"><input id="share-link" readonly><button id="copy-link" class="button primary">Copiar</button></div><div class="expiration"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span id="expiration-text"></span></div><p class="fine-print">Puedes cerrar esta página. El archivo seguirá disponible hasta que venza el enlace.</p><button id="new-upload" class="button secondary full">Enviar otro archivo<span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></button><button id="delete-upload" class="text-button danger">Eliminar ahora</button><p id="result-error" class="error" role="alert"></p></div></section>
-  <section id="receive-view" class="center-view" hidden><div class="status-card"><div class="status-icon"><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v16m-6-6 6 6 6-6"/></svg></div><span class="eyebrow">COMPARTIDO CONTIGO</span><h1 id="receive-title">Tu archivo<br><span>está de camino.</span></h1><p id="receive-description">Estamos preparando la descarga.</p><form id="pin-form" hidden><label for="receive-pin">PIN del archivo</label><input id="receive-pin" type="password" inputmode="numeric" maxlength="12" autocomplete="off" required><button class="button primary full" type="submit">Abrir y descargar<span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v16m-6-6 6 6 6-6"/></svg></span></button></form><div id="receive-file" class="result-file" hidden><strong id="receive-name"></strong><span id="receive-size"></span></div><div id="receive-progress" hidden><div class="progress-track"><span id="download-bar"></span></div><div class="progress-info"><span id="download-percent"></span><span id="download-size"></span></div></div><p id="receive-error" class="error" role="alert"></p><button id="download-again" class="button primary full" hidden>Descargar otra vez<span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v16m-6-6 6 6 6-6"/></svg></span></button><button id="send-my-file" class="button secondary full">Enviar un archivo<span><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></span></button><p class="fine-print">Quien envía y quien descarga pueden usar esta misma página.</p></div></section>
-  <p id="setup-notice" class="setup-notice" hidden>El espacio temporal todavía no está activado. Esta página aún no permite enviar archivos.</p>
+
+  <section id="progress-view" class="view" aria-live="polite" hidden>
+   <h1 id="progress-title">Preparando…</h1>
+   <p id="progress-description" class="sr-only"></p>
+   <div class="progress-track"><span id="progress-bar"></span></div>
+   <div class="progress-info"><span id="progress-percent"></span><span id="progress-size"></span></div>
+  </section>
+
+  <section id="result-view" class="view" aria-labelledby="result-title" hidden>
+   <h1 id="result-title">Listo</h1>
+   <div class="file-details"><strong id="result-name"></strong><span id="result-size"></span></div>
+   <label class="sr-only" for="share-link">Enlace para compartir</label>
+   <div class="link-box">
+    <input id="share-link" type="text" readonly autocomplete="off" spellcheck="false">
+    <button id="copy-link" class="button primary" type="button">Copiar</button>
+   </div>
+   <p id="expiration-text" class="note"></p>
+   <button id="new-upload" class="button secondary" type="button">Otro archivo</button>
+   <button id="delete-upload" class="text-button" type="button">Eliminar</button>
+   <p id="result-error" class="error" role="alert"></p>
+  </section>
+
+  <section id="receive-view" class="view" aria-labelledby="receive-title" hidden>
+   <h1 id="receive-title">Archivo</h1>
+   <p id="receive-description" class="sr-only"></p>
+   <form id="pin-form" autocomplete="off" hidden>
+    <label class="sr-only" for="receive-pin">PIN del archivo</label>
+    <input id="receive-pin" class="pin-input" name="access-code" type="text" inputmode="numeric" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="12" placeholder="PIN" data-1p-ignore data-lpignore="true" data-bwignore required>
+    <button class="button primary" type="submit">Descargar</button>
+   </form>
+   <div id="receive-file" class="file-details" hidden><strong id="receive-name"></strong><span id="receive-size"></span></div>
+   <div id="receive-progress" hidden>
+    <div class="progress-track"><span id="download-bar"></span></div>
+    <div class="progress-info"><span id="download-percent"></span><span id="download-size"></span></div>
+   </div>
+   <p id="receive-error" class="error" role="alert"></p>
+   <button id="download-again" class="button primary" type="button" hidden>Descargar</button>
+   <button id="send-my-file" class="button secondary" type="button">Enviar archivo</button>
+  </section>
+  <p id="setup-notice" class="setup-notice" role="status" hidden>No disponible</p>
  </main>
- <footer><span>Menos vueltas. Solo un enlace.</span><span>Archivos temporales · 24 horas</span></footer>
  <input id="file-input" type="file" hidden>
  <div id="toast" role="status" aria-live="polite" hidden></div>
 </body>

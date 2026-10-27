@@ -9,13 +9,16 @@
  <meta name="description" content="Comparte un archivo con un enlace temporal.">
  <title>Enlace</title>
  <link rel="icon" href="./favicon.svg?v=c2094cdf1acc9636" type="image/svg+xml">
- <link rel="stylesheet" href="./style.css?v=b82163e0a68a0d30">
+ <link rel="stylesheet" href="./style.css?v=5c7a83e18e7026cc">
  <script src="./app.js?v=951c6e8138a3541d" defer></script>
 </head>
 <body>
  <main>
   <section id="send-view" class="view" aria-labelledby="send-title">
-   <h1 id="send-title">Enviar</h1>
+   <div class="view-heading">
+    <h1 id="send-title">Enviar</h1>
+    <p class="note">50 MB · 24 h</p>
+   </div>
    <div id="drop-zone" class="drop-zone">
     <button id="choose-file" class="button secondary" type="button">Elegir archivo</button>
    </div>
@@ -29,7 +32,6 @@
    </div>
    <p id="send-error" class="error" role="alert"></p>
    <button id="send-button" class="button primary" type="button" disabled>Crear enlace</button>
-   <p class="note">50 MB · 24 h</p>
   </section>
 
   <section id="progress-view" class="view" aria-live="polite" hidden>

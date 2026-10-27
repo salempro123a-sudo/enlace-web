@@ -6,22 +6,23 @@
  <meta name="viewport" content="width=device-width,initial-scale=1">
  <meta name="referrer" content="no-referrer">
  <meta name="theme-color" content="#000000">
- <meta name="description" content="Comparte un archivo con un enlace temporal.">
+ <meta name="description" content="Comparte archivos y carpetas con un enlace temporal.">
  <title>Enlace</title>
  <link rel="icon" href="./favicon.svg?v=c2094cdf1acc9636" type="image/svg+xml">
- <link rel="stylesheet" href="./style.css?v=e6c07235e099e7b1">
- <script src="./app.js?v=376a89be1b3c369e" defer></script>
+ <link rel="stylesheet" href="./style.css?v=37cd8918fdcf26ab">
+ <script src="./app.js?v=87f2d82ac3d47cda" defer></script>
 </head>
 <body>
  <main>
   <section id="send-view" class="view" aria-labelledby="send-title">
    <div class="view-heading">
     <h1 id="send-title">Enviar</h1>
-    <p class="note">500 MB · 24 h</p>
+    <p class="note limit-note"><span>900 MB</span><span>24 h</span></p>
    </div>
    <div class="space-row"><span>Espacio</span><span id="space-available">—</span></div>
    <div id="drop-zone" class="drop-zone">
     <button id="choose-file" class="button secondary" type="button">Elegir archivo</button>
+    <button id="choose-folder" class="button secondary" type="button">Elegir carpeta</button>
    </div>
    <div id="selected-file" class="file-row" hidden>
     <div class="file-details"><strong id="selected-name"></strong><span id="selected-size"></span></div>
@@ -55,7 +56,7 @@
     <button id="copy-link" class="button primary" type="button">Copiar</button>
    </div>
    <p id="expiration-text" class="note"></p>
-   <button id="new-upload" class="button secondary" type="button">Otro archivo</button>
+   <button id="new-upload" class="button secondary" type="button">Otro envío</button>
    <button id="delete-upload" class="text-button" type="button">Eliminar</button>
    <p id="result-error" class="error" role="alert"></p>
   </section>
@@ -75,11 +76,12 @@
    </div>
    <p id="receive-error" class="error" role="alert"></p>
    <button id="download-again" class="button primary" type="button" hidden>Descargar</button>
-   <button id="send-my-file" class="button secondary" type="button">Enviar archivo</button>
+   <button id="send-my-file" class="button secondary" type="button">Enviar</button>
   </section>
   <p id="setup-notice" class="setup-notice" role="status" hidden>No disponible</p>
  </main>
  <input id="file-input" type="file" hidden>
+ <input id="folder-input" type="file" webkitdirectory directory multiple hidden>
  <div id="toast" role="status" aria-live="polite" hidden></div>
 </body>
 </html>

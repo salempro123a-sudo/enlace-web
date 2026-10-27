@@ -142,11 +142,13 @@ button:disabled{cursor:not-allowed}
 .primary:disabled{background:#292929;border-color:#292929;color:#aaa}
 .secondary{width:100%;border-color:#666}
 .secondary:hover:not(:disabled){border-color:#f1f1ef}
-.drop-zone{border-bottom:1px solid #383838}
+.drop-zone{display:flex;border-bottom:1px solid #383838}
 .drop-zone.dragging{outline:2px solid #e7e7e3;outline-offset:4px}
-#choose-file{min-height:72px;padding:16px 0;justify-content:space-between;border:0;background:transparent;color:#ececea;font-size:16px;font-weight:450;text-align:left}
-#choose-file::after{content:"+";font-size:27px;line-height:1;font-weight:300;color:#ccc}
-#choose-file:hover:not(:disabled){color:#aaa}
+#choose-file,#choose-folder{flex:1;min-width:0;min-height:72px;padding:16px 12px;justify-content:space-between;border:0;background:transparent;color:#ececea;font-size:14px;font-weight:450;text-align:left}
+#choose-file{padding-left:0;border-right:1px solid #383838}
+#choose-folder{padding-right:0;padding-left:16px}
+#choose-file::after,#choose-folder::after{content:"+";font-size:24px;line-height:1;font-weight:300;color:#ccc}
+#choose-file:hover:not(:disabled),#choose-folder:hover:not(:disabled){color:#aaa}
 .file-row{display:flex;align-items:center;gap:14px;min-height:72px;padding:14px 0;border-bottom:1px solid #383838}
 .file-details{min-width:0;flex:1}
 .file-details strong{display:block;font-size:15px;font-weight:450;line-height:1.4;overflow-wrap:anywhere}
@@ -167,6 +169,7 @@ input::placeholder{color:#b0b0ad;letter-spacing:normal;opacity:1}
 .history-name{display:block;font-size:14px;line-height:1.4;overflow-wrap:anywhere;font-weight:450}
 .history-meta{display:block;margin-top:4px;font-size:11px;color:#aaa}
 .note{font-size:11px;line-height:1.4;color:#b0b0ad;white-space:nowrap}
+.limit-note{display:flex;gap:12px}
 .view-heading .note{padding-bottom:3px}
 .space-row{display:flex;justify-content:space-between;gap:12px;padding:15px 0;color:#b0b0ad;font-size:11px;border-bottom:1px solid #383838;font-variant-numeric:tabular-nums}
 #expiration-text{margin-top:14px}

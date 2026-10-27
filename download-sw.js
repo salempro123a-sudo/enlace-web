@@ -7,7 +7,7 @@ self.addEventListener('message',(event)=>{
   const data=event.data,port=event.ports[0];
   if(!data||data.type!=='enlace-download'||!port||!event.source||
      !/^[a-f0-9]{48}$/.test(data.id)||typeof data.name!=='string'||data.name.length>255||
-     !Number.isSafeInteger(data.size)||data.size<1||data.size>524288000||activeDownloads.has(data.id))return;
+     !Number.isSafeInteger(data.size)||data.size<1||data.size>899999680||activeDownloads.has(data.id))return;
   let controller,waiting=null,bytes=0,ended=false,finished;
   const lifetime=new Promise((resolve)=>{finished=resolve;});
   event.waitUntil(lifetime);
